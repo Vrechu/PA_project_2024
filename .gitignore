@@ -4,3 +4,6 @@ Temp
 UserSettings
 PA_project_2024.sln
 .vsconfig
+.vs
+obj
+Assembly-CSharp.csproj
