@@ -19,8 +19,10 @@ public class SimpleStock : Shape
 	private GameObject[] roofStyle;
 	[SerializeField]
 	private GameObject[] roofCornerStyle;
+	[SerializeField]
+	private GameObject[] roofCenterStyle;
 
-	public void Initialize(int Width, int Depth, GameObject[] wallStyle, GameObject[] wallCornerStyle, GameObject[] roofStyle, GameObject[] roofCornerStyle)
+	public void Initialize(int Width, int Depth, GameObject[] wallStyle, GameObject[] wallCornerStyle, GameObject[] roofStyle, GameObject[] roofCornerStyle, GameObject[] roofCenterStyle)
 	{
 		this.Width = Width;
 		this.Depth = Depth;
@@ -28,6 +30,7 @@ public class SimpleStock : Shape
 		this.wallCornerStyle = wallCornerStyle;
 		this.roofStyle = roofStyle;
 		this.roofCornerStyle = roofCornerStyle;
+		this.roofCenterStyle = roofCenterStyle;
 	}
 
 	protected override void Execute()
@@ -40,13 +43,13 @@ public class SimpleStock : Shape
 		if (randomValue < stockContinueChance)
 		{
 			SimpleStock nextStock = CreateSymbol<SimpleStock>("stock", new Vector3(0, 1, 0));
-			nextStock.Initialize(Width, Depth, wallStyle, wallCornerStyle, roofStyle, roofCornerStyle);
+			nextStock.Initialize(Width, Depth, wallStyle, wallCornerStyle, roofStyle, roofCornerStyle, roofCenterStyle);
 			nextStock.Generate(buildDelay);
 		}
 		else
 		{
 			SimpleRoof nextRoof = CreateSymbol<SimpleRoof>("roof", new Vector3(0, 1, 0));
-			nextRoof.Initialize(Width, Depth, roofStyle, roofCornerStyle);
+			nextRoof.Initialize(Width, Depth, roofStyle, roofCornerStyle, roofCenterStyle);
 			nextRoof.Generate(buildDelay);
 		}
 	}

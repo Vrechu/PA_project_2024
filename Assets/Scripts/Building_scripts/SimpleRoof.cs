@@ -11,13 +11,15 @@ public class SimpleRoof : Shape
 
 	GameObject[] roofStyle;
 	GameObject[] roofCornerStyle;
+	GameObject[] roofCenterStyle;
 
-	public void Initialize(int Width, int Depth, GameObject[] roofStyle, GameObject[] roofCornerStyle)
+	public void Initialize(int Width, int Depth, GameObject[] roofStyle, GameObject[] roofCornerStyle, GameObject[] roofCenterStyle)
 	{
 		this.Width = Width;
 		this.Depth = Depth;
 		this.roofStyle = roofStyle;
 		this.roofCornerStyle = roofCornerStyle;
+		this.roofCenterStyle = roofCenterStyle;
 	}
 
 
@@ -80,15 +82,27 @@ public class SimpleRoof : Shape
 			newCornerBlock.Initialize(roofCornerStyle[0]);
 			newCornerBlock.Generate();
 
-		}		
+		}
 	}
 
 	private void CreateRoofCenter()
-    {
-		if (Width > 2)
-        {
-			
-        }
-    }
+	{
+		Debug.Log("d: " + Depth);
+		Debug.Log("W: " + Width);
+
+
+		if (Depth < 3 && Width < 3) return;
+		Vector3 localPosition = new Vector3();
+
+		for (int i = 0; i < Width-2; i++)
+		{			
+			localPosition = Vector3.right * (i - (Width - 3) / 2f);
+
+			SimpleRow newRow = CreateSymbol<SimpleRow>("RoofCenterBlock", localPosition, Quaternion.identity);
+			newRow.Initialize(Depth-2, roofCenterStyle);
+			newRow.Generate();
+		}
+	}
 }
+
 
