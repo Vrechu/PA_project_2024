@@ -11,19 +11,13 @@ public class SimpleRoof : Shape
 
 	GameObject[] roofStyle;
 	GameObject[] roofCornerStyle;
-	GameObject[] wallStyle;
 
-	// (offset) values for the next layer:
-	int newWidth;
-	int newDepth;
-
-	public void Initialize(int Width, int Depth, GameObject[] roofStyle, GameObject[] roofCornerStyle, GameObject[] wallStyle)
+	public void Initialize(int Width, int Depth, GameObject[] roofStyle, GameObject[] roofCornerStyle)
 	{
 		this.Width = Width;
 		this.Depth = Depth;
 		this.roofStyle = roofStyle;
 		this.roofCornerStyle = roofCornerStyle;
-		this.wallStyle = wallStyle;
 	}
 
 
@@ -32,62 +26,69 @@ public class SimpleRoof : Shape
 		if (Width == 0 || Depth == 0)
 			return;
 
-		newWidth = Width;
-		newDepth = Depth;
-
-		CreateFlatRoofPart();
-		CreateNextPart();
+		CreateRoofEdge();
+		CreateRoofCenter();
 	}
 
-	void CreateFlatRoofPart()
+	private void CreateRoofEdge()
 	{
-		// Randomly create two roof strips in depth direction or in width direction:
-		int side = RandomInt(2);
-		SimpleRow flatRoof;
-
-		switch (side)
+		// Create four central roof edge parts:
+		for (int i = 0; i < 4; i++)
 		{
-			// Add two roof strips in depth direction
-			case 0:
-				for (int i = 0; i < 2; i++)
-				{
-					flatRoof = CreateSymbol<SimpleRow>("roofStrip", new Vector3((Width - 1) * (i - 0.5f), 0, 0));
-					flatRoof.Initialize(Depth, roofStyle);
-					flatRoof.Generate();
-				}
-				newWidth -= 2;
-				break;
-			// Add two roof strips in width direction
-			case 1:
-				for (int i = 0; i < 2; i++)
-				{
-					flatRoof = CreateSymbol<SimpleRow>("roofStrip", new Vector3(0, 0, (Depth - 1) * (i - 0.5f)));
-					flatRoof.Initialize(Width, roofStyle, new Vector3(1, 0, 0));
-					flatRoof.Generate();
-				}
-				newDepth -= 2;
-				break;
+			Vector3 localPosition = new Vector3();
+			switch (i)
+			{
+				case 0:
+					localPosition = new Vector3(-(Width - 1) * 0.5f, 0, 0); // left
+					break;
+				case 1:
+					localPosition = new Vector3(0, 0, (Depth - 1) * 0.5f); // back
+					break;
+				case 2:
+					localPosition = new Vector3((Width - 1) * 0.5f, 0, 0); // right
+					break;
+				case 3:
+					localPosition = new Vector3(0, 0, -(Depth - 1) * 0.5f); // front
+					break;
+			}
+			SimpleRow newRow = CreateSymbol<SimpleRow>("CentralRoofPart", localPosition, Quaternion.Euler(0, i * 90, 0));
+			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, roofStyle);
+			newRow.Generate();
 		}
+
+		// Create four corner blocks:
+		for (int i = 0; i < 4; i++)
+		{
+			Vector3 localPosition = new Vector3();
+			switch (i)
+			{
+				case 0:
+					localPosition = new Vector3(-(Width - 1) * 0.5f, 0, -(Depth - 1) * 0.5f); // left front
+					break;
+				case 1:
+					localPosition = new Vector3(-(Width - 1) * 0.5f, 0, (Depth - 1) * 0.5f); // left back
+					break;
+				case 2:
+					localPosition = new Vector3((Width - 1) * 0.5f, 0, (Depth - 1) * 0.5f); // right back
+					break;
+				case 3:
+					localPosition = new Vector3((Width - 1) * 0.5f, 0, -(Depth - 1) * 0.5f); // right front
+					break;
+			}
+
+			Block newCornerBlock = CreateSymbol<Block>("RoofCornerBlock", localPosition, Quaternion.Euler(0, i * 90, 0));
+			newCornerBlock.Initialize(roofCornerStyle[0]);
+			newCornerBlock.Generate();
+
+		}		
 	}
 
-	void CreateNextPart()
-	{
-		// randomly continue with a roof or a stock:
-		if (newWidth <= 0 || newDepth <= 0)
-			return;
-
-		float randomValue = RandomFloat();
-		if (randomValue < roofContinueChance)
-		{ // continue with the roof
-			SimpleRoof nextRoof = CreateSymbol<SimpleRoof>("roof");
-			nextRoof.Initialize(newWidth, newDepth, roofStyle, roofCornerStyle, wallStyle);
-			nextRoof.Generate(buildDelay);
-		}
-		else
-		{ // continue with a stock
-			SimpleStock nextStock = CreateSymbol<SimpleStock>("stock");
-			nextStock.Initialize(newWidth, newDepth, wallStyle, wallStyle, roofStyle, roofCornerStyle);
-			nextStock.Generate(buildDelay);
-		}
-	}
+	private void CreateRoofCenter()
+    {
+		if (Width > 2)
+        {
+			
+        }
+    }
 }
+

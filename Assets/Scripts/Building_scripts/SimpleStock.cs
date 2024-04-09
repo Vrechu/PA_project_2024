@@ -32,6 +32,27 @@ public class SimpleStock : Shape
 
 	protected override void Execute()
 	{
+		GenerateWallCenters();
+		GenerateWallCorners();
+
+		// Continue with a stock or with a roof (random choice):
+		float randomValue = RandomFloat();
+		if (randomValue < stockContinueChance)
+		{
+			SimpleStock nextStock = CreateSymbol<SimpleStock>("stock", new Vector3(0, 1, 0));
+			nextStock.Initialize(Width, Depth, wallStyle, wallCornerStyle, roofStyle, roofCornerStyle);
+			nextStock.Generate(buildDelay);
+		}
+		else
+		{
+			SimpleRoof nextRoof = CreateSymbol<SimpleRoof>("roof", new Vector3(0, 1, 0));
+			nextRoof.Initialize(Width, Depth, roofStyle, roofCornerStyle);
+			nextRoof.Generate(buildDelay);
+		}
+	}
+
+	private void GenerateWallCenters()
+	{
 		// Create four central walls:
 		for (int i = 0; i < 4; i++)
 		{
@@ -55,7 +76,10 @@ public class SimpleStock : Shape
 			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, wallStyle);
 			newRow.Generate();
 		}
+	}
 
+	private void GenerateWallCorners()
+    {
 		// Create four corner blocks:
 		for (int i = 0; i < 4; i++)
 		{
@@ -79,24 +103,6 @@ public class SimpleStock : Shape
 			Block newCornerBlock = CreateSymbol<Block>("WallCornerBlock", localPosition, Quaternion.Euler(0, i * 90, 0));
 			newCornerBlock.Initialize(wallCornerStyle[0]);
 			newCornerBlock.Generate();
-
-		}
-
-
-
-		// Continue with a stock or with a roof (random choice):
-		float randomValue = RandomFloat();
-		if (randomValue < stockContinueChance)
-		{
-			SimpleStock nextStock = CreateSymbol<SimpleStock>("stock", new Vector3(0, 1, 0));
-			nextStock.Initialize(Width, Depth, wallStyle, wallCornerStyle, roofStyle, roofCornerStyle);
-			nextStock.Generate(buildDelay);
-		}
-		else
-		{
-			SimpleRoof nextRoof = CreateSymbol<SimpleRoof>("roof", new Vector3(0, 1, 0));
-			nextRoof.Initialize(Width, Depth, roofStyle, roofCornerStyle, wallStyle);
-			nextRoof.Generate(buildDelay);
 		}
 	}
 }
