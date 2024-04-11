@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9041766170016762922}
   - component: {fileID: -4140003776481478769}
   m_Layer: 0
-  m_Name: Roof_side
+  m_Name: Roof_side1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

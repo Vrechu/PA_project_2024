@@ -201,19 +201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildDelay: 0.1
   Width: 5
-  Depth: 3
-  wallStyle:
-  - {fileID: 2381687304442514085, guid: b2bbfc0dd89336340945d383e5d33018, type: 3}
-  - {fileID: 2381687304442514085, guid: ec4367f6f1f90ee40b1a220b09b6c39b, type: 3}
-  - {fileID: 2381687304442514085, guid: 16860c30de372354a98560dcf0f9e7f6, type: 3}
-  wallCornerStyle:
-  - {fileID: 4312049009853406107, guid: 9079df34cbd3ded45a624cacbb531539, type: 3}
-  roofStyle:
-  - {fileID: 1301690873937781147, guid: 21b76d686759c7e428c23c5edcf436ea, type: 3}
-  roofCornerStyle:
-  - {fileID: 1301690873937781147, guid: d41eb34d4a52f8c4d96beaafbc5477a5, type: 3}
-  roofCenterStyle:
-  - {fileID: 2381687304442514085, guid: 0a37623dc2795594d98a2f39a7102064, type: 3}
+  Depth: 5
+  buildingProfile: {fileID: 11400000, guid: 29108c50dc7af144faab39abf15cb09e, type: 2}
 --- !u!1 &1083880785
 GameObject:
   m_ObjectHideFlags: 0
