@@ -12,25 +12,13 @@ public class SimpleStock : Shape
 	int Depth;
 
 	[SerializeField]
-	private GameObject[] wallStyle;
-	[SerializeField]
-	private GameObject[] wallCornerStyle;
-	[SerializeField]
-	private GameObject[] roofStyle;
-	[SerializeField]
-	private GameObject[] roofCornerStyle;
-	[SerializeField]
-	private GameObject[] roofCenterStyle;
+	private BuildingProfile buildingProfile;
 
-	public void Initialize(int Width, int Depth, GameObject[] wallStyle, GameObject[] wallCornerStyle, GameObject[] roofStyle, GameObject[] roofCornerStyle, GameObject[] roofCenterStyle)
+	public void Initialize(int Width, int Depth,BuildingProfile buildingProfile)
 	{
 		this.Width = Width;
 		this.Depth = Depth;
-		this.wallStyle = wallStyle;
-		this.wallCornerStyle = wallCornerStyle;
-		this.roofStyle = roofStyle;
-		this.roofCornerStyle = roofCornerStyle;
-		this.roofCenterStyle = roofCenterStyle;
+		this.buildingProfile = buildingProfile;
 	}
 
 	protected override void Execute()
@@ -43,13 +31,13 @@ public class SimpleStock : Shape
 		if (randomValue < stockContinueChance)
 		{
 			SimpleStock nextStock = CreateSymbol<SimpleStock>("stock", new Vector3(0, 1, 0));
-			nextStock.Initialize(Width, Depth, wallStyle, wallCornerStyle, roofStyle, roofCornerStyle, roofCenterStyle);
+			nextStock.Initialize(Width, Depth, buildingProfile);
 			nextStock.Generate(buildDelay);
 		}
 		else
 		{
 			SimpleRoof nextRoof = CreateSymbol<SimpleRoof>("roof", new Vector3(0, 1, 0));
-			nextRoof.Initialize(Width, Depth, roofStyle, roofCornerStyle, roofCenterStyle);
+			nextRoof.Initialize(Width, Depth, buildingProfile);
 			nextRoof.Generate(buildDelay);
 		}
 	}
@@ -76,7 +64,7 @@ public class SimpleStock : Shape
 					break;
 			}
 			SimpleRow newRow = CreateSymbol<SimpleRow>("CentralWall", localPosition, Quaternion.Euler(0, i * 90, 0));
-			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, wallStyle);
+			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, buildingProfile.WallCenterBlocks);
 			newRow.Generate();
 		}
 	}
@@ -104,7 +92,7 @@ public class SimpleStock : Shape
 			}
 
 			Block newCornerBlock = CreateSymbol<Block>("WallCornerBlock", localPosition, Quaternion.Euler(0, i * 90, 0));
-			newCornerBlock.Initialize(wallCornerStyle[0]);
+			newCornerBlock.Initialize(buildingProfile.WallCornerBlocks[0]);
 			newCornerBlock.Generate();
 		}
 	}

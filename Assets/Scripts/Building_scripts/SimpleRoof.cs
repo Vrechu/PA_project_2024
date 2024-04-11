@@ -9,17 +9,14 @@ public class SimpleRoof : Shape
 	int Width;
 	int Depth;
 
-	GameObject[] roofStyle;
-	GameObject[] roofCornerStyle;
-	GameObject[] roofCenterStyle;
+	private BuildingProfile buildingProfile;
 
-	public void Initialize(int Width, int Depth, GameObject[] roofStyle, GameObject[] roofCornerStyle, GameObject[] roofCenterStyle)
+	public void Initialize(int Width, int Depth, BuildingProfile buildingProfile)
 	{
 		this.Width = Width;
 		this.Depth = Depth;
-		this.roofStyle = roofStyle;
-		this.roofCornerStyle = roofCornerStyle;
-		this.roofCenterStyle = roofCenterStyle;
+
+		this.buildingProfile = buildingProfile;
 	}
 
 
@@ -54,7 +51,7 @@ public class SimpleRoof : Shape
 					break;
 			}
 			SimpleRow newRow = CreateSymbol<SimpleRow>("CentralRoofPart", localPosition, Quaternion.Euler(0, i * 90, 0));
-			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, roofStyle);
+			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, buildingProfile.RoofCenterBlocks);
 			newRow.Generate();
 		}
 
@@ -79,7 +76,7 @@ public class SimpleRoof : Shape
 			}
 
 			Block newCornerBlock = CreateSymbol<Block>("RoofCornerBlock", localPosition, Quaternion.Euler(0, i * 90, 0));
-			newCornerBlock.Initialize(roofCornerStyle[0]);
+			newCornerBlock.Initialize(buildingProfile.RoofCornerBlocks[0]);
 			newCornerBlock.Generate();
 
 		}
@@ -94,15 +91,16 @@ public class SimpleRoof : Shape
 		if (Depth < 3 && Width < 3) return;
 		Vector3 localPosition = new Vector3();
 
-		for (int i = 0; i < Width-2; i++)
-		{			
+		for (int i = 0; i < Width - 2; i++)
+		{
 			localPosition = Vector3.right * (i - (Width - 3) / 2f);
 
 			SimpleRow newRow = CreateSymbol<SimpleRow>("RoofCenterBlock", localPosition, Quaternion.identity);
-			newRow.Initialize(Depth-2, roofCenterStyle);
+			newRow.Initialize(Depth - 2, buildingProfile.RoofTopBlocks);
 			newRow.Generate();
 		}
 	}
 }
+
 
 
