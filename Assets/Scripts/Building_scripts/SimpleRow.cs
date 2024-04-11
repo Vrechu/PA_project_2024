@@ -25,11 +25,10 @@ public class SimpleRow : Shape
 		if (Number <= 0)
 			return;
 		for (int i = 0; i < Number; i++)
-		{   // spawn the prefabs, randomly chosen
-			int index = RandomInt(prefabs.Length); // choose a random prefab index
-
+		{  
 			Block newBlock = CreateSymbol<Block>("RowBlock", direction * (i - (Number - 1) / 2f), Quaternion.identity);
 
+			int index = RandomInt(prefabs.Length); // choose a random prefab index
 			newBlock.Initialize(prefabs[index]);
 			newBlock.Generate();
 		}

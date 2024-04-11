@@ -76,7 +76,10 @@ public class SimpleRoof : Shape
 			}
 
 			Block newCornerBlock = CreateSymbol<Block>("RoofCornerBlock", localPosition, Quaternion.Euler(0, i * 90, 0));
-			newCornerBlock.Initialize(buildingProfile.RoofCornerBlocks[0]);
+
+
+            int index = RandomInt(buildingProfile.RoofCornerBlocks.Length);
+            newCornerBlock.Initialize(buildingProfile.RoofCornerBlocks[index]);
 			newCornerBlock.Generate();
 
 		}
@@ -84,10 +87,6 @@ public class SimpleRoof : Shape
 
 	private void CreateRoofCenter()
 	{
-		Debug.Log("d: " + Depth);
-		Debug.Log("W: " + Width);
-
-
 		if (Depth < 3 && Width < 3) return;
 		Vector3 localPosition = new Vector3();
 

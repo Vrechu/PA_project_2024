@@ -92,7 +92,9 @@ public class SimpleStock : Shape
 			}
 
 			Block newCornerBlock = CreateSymbol<Block>("WallCornerBlock", localPosition, Quaternion.Euler(0, i * 90, 0));
-			newCornerBlock.Initialize(buildingProfile.WallCornerBlocks[0]);
+
+            int index = RandomInt(buildingProfile.WallCornerBlocks.Length);
+            newCornerBlock.Initialize(buildingProfile.WallCornerBlocks[index]);
 			newCornerBlock.Generate();
 		}
 	}
