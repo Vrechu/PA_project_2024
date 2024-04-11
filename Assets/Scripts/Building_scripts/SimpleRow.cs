@@ -27,8 +27,7 @@ public class SimpleRow : Shape
 		for (int i = 0; i < Number; i++)
 		{  
 			Block newBlock = CreateSymbol<Block>("RowBlock", direction * (i - (Number - 1) / 2f), Quaternion.identity);
-
-			int index = RandomInt(prefabs.Length); // choose a random prefab index
+			int index = RandomInt(prefabs.Length);
 			newBlock.Initialize(prefabs[index]);
 			newBlock.Generate();
 		}

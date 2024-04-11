@@ -14,6 +14,11 @@ public class SimpleStock : Shape
 	[SerializeField]
 	private BuildingProfile buildingProfile;
 
+	[SerializeField]
+	private bool firstFloor = false;
+
+	private FloorProfile floorProfile;
+
 	public void Initialize(int Width, int Depth,BuildingProfile buildingProfile)
 	{
 		this.Width = Width;
@@ -23,6 +28,7 @@ public class SimpleStock : Shape
 
 	protected override void Execute()
 	{
+		SetFloorProfile();
 		GenerateWallCenters();
 		GenerateWallCorners();
 
@@ -40,6 +46,16 @@ public class SimpleStock : Shape
 			nextRoof.Initialize(Width, Depth, buildingProfile);
 			nextRoof.Generate(buildDelay);
 		}
+	}
+
+	private void SetFloorProfile()
+	{
+		if (firstFloor) floorProfile = buildingProfile.FirstFloorProfile;
+		else
+		{
+            int index = RandomInt(buildingProfile.MiddleFloorProfiles.Length);
+			floorProfile = buildingProfile.MiddleFloorProfiles[index];
+        }
 	}
 
 	private void GenerateWallCenters()
@@ -64,7 +80,7 @@ public class SimpleStock : Shape
 					break;
 			}
 			SimpleRow newRow = CreateSymbol<SimpleRow>("CentralWall", localPosition, Quaternion.Euler(0, i * 90, 0));
-			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, buildingProfile.WallCenterBlocks);
+			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, floorProfile.WallCenterBlocks);
 			newRow.Generate();
 		}
 	}
@@ -93,8 +109,8 @@ public class SimpleStock : Shape
 
 			Block newCornerBlock = CreateSymbol<Block>("WallCornerBlock", localPosition, Quaternion.Euler(0, i * 90, 0));
 
-            int index = RandomInt(buildingProfile.WallCornerBlocks.Length);
-            newCornerBlock.Initialize(buildingProfile.WallCornerBlocks[index]);
+            int index = RandomInt(floorProfile.WallCornerBlocks.Length);
+            newCornerBlock.Initialize(floorProfile.WallCornerBlocks[index]);
 			newCornerBlock.Generate();
 		}
 	}

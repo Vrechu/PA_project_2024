@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f40c555a8a78f40a24180615445ba5, type: 3}
+  m_Name: TestRoofProfile 1
+  m_EditorClassIdentifier: 
+  RoofCenterBlocks:
+  - {fileID: 1301690873937781147, guid: 878fab23b68b9f044a64d1abe3cfdcd3, type: 3}
+  RoofCornerBlocks:
+  - {fileID: 1301690873937781147, guid: 370f4d2ad62a15b44ad8f3f899ac2cde, type: 3}
+  RoofTopBlocks:
+  - {fileID: 2381687304442514085, guid: f1c8b27a4382e1c4c864cd3f300c5b62, type: 3}

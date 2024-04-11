@@ -51,7 +51,7 @@ public class SimpleRoof : Shape
 					break;
 			}
 			SimpleRow newRow = CreateSymbol<SimpleRow>("CentralRoofPart", localPosition, Quaternion.Euler(0, i * 90, 0));
-			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, buildingProfile.RoofCenterBlocks);
+			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, buildingProfile.RoofProfile.RoofCenterBlocks);
 			newRow.Generate();
 		}
 
@@ -78,8 +78,8 @@ public class SimpleRoof : Shape
 			Block newCornerBlock = CreateSymbol<Block>("RoofCornerBlock", localPosition, Quaternion.Euler(0, i * 90, 0));
 
 
-            int index = RandomInt(buildingProfile.RoofCornerBlocks.Length);
-            newCornerBlock.Initialize(buildingProfile.RoofCornerBlocks[index]);
+            int index = RandomInt(buildingProfile.RoofProfile.RoofCornerBlocks.Length);
+            newCornerBlock.Initialize(buildingProfile.RoofProfile.RoofCornerBlocks[index]);
 			newCornerBlock.Generate();
 
 		}
@@ -95,7 +95,7 @@ public class SimpleRoof : Shape
 			localPosition = Vector3.right * (i - (Width - 3) / 2f);
 
 			SimpleRow newRow = CreateSymbol<SimpleRow>("RoofCenterBlock", localPosition, Quaternion.identity);
-			newRow.Initialize(Depth - 2, buildingProfile.RoofTopBlocks);
+			newRow.Initialize(Depth - 2, buildingProfile.RoofProfile.RoofTopBlocks);
 			newRow.Generate();
 		}
 	}
