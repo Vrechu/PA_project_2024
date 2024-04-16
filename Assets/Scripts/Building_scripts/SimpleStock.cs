@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public class SimpleStock : Shape
 {
-	// grammar rule probabilities:
-	const float stockContinueChance = 0.5f;
+	private int floorNumber;
 
 	// shape parameters:
 	[SerializeField]
@@ -19,11 +19,12 @@ public class SimpleStock : Shape
 
 	private FloorProfile floorProfile;
 
-	public void Initialize(int Width, int Depth,BuildingProfile buildingProfile)
+	public void Initialize(int floorNumber, int Width, int Depth,BuildingProfile buildingProfile)
 	{
 		this.Width = Width;
 		this.Depth = Depth;
 		this.buildingProfile = buildingProfile;
+		this.floorNumber = floorNumber;
 	}
 
 	protected override void Execute()
@@ -31,23 +32,22 @@ public class SimpleStock : Shape
 		SetFloorProfile();
 		GenerateWallCenters();
 		GenerateWallCorners();
+		if (firstFloor) SetFloorAmount();
 
-		// Continue with a stock or with a roof (random choice):
-		float randomValue = RandomFloat();
-		if (randomValue < stockContinueChance)
-		{
-			SimpleStock nextStock = CreateSymbol<SimpleStock>("stock", new Vector3(0, 1, 0));
-			nextStock.Initialize(Width, Depth, buildingProfile);
-			nextStock.Generate(buildDelay);
-		}
-		else
-		{
-			SimpleRoof nextRoof = CreateSymbol<SimpleRoof>("roof", new Vector3(0, 1, 0));
-			nextRoof.Initialize(Width, Depth, buildingProfile);
-			nextRoof.Generate(buildDelay);
-		}
+		InitializeNextFloor();
 	}
 
+	/// <summary>
+	/// Sets the total amount of non-roof layers to the building based on the min and max specified in the building profile.
+	/// </summary>
+	private void SetFloorAmount()
+	{
+		floorNumber = buildingProfile.MinFloors + RandomInt(buildingProfile.MaxFloors + 1 - buildingProfile.MinFloors);
+	}
+
+	/// <summary>
+	/// Picks a random floor profile from the building profile.
+	/// </summary>
 	private void SetFloorProfile()
 	{
 		if (firstFloor) floorProfile = buildingProfile.FirstFloorProfile;
@@ -58,6 +58,9 @@ public class SimpleStock : Shape
         }
 	}
 
+	/// <summary>
+	/// Generates the walls of the building excluding the wall corners.
+	/// </summary>
 	private void GenerateWallCenters()
 	{
 		// Create four central walls:
@@ -85,6 +88,10 @@ public class SimpleStock : Shape
 		}
 	}
 
+
+	/// <summary>
+	/// Generates the wall corners of this floor layer.
+	/// </summary>
 	private void GenerateWallCorners()
     {
 		// Create four corner blocks:
@@ -114,5 +121,25 @@ public class SimpleStock : Shape
 			newCornerBlock.Generate();
 		}
 	}
+
+
+	/// <summary>
+	/// Generates the next floor or roof layer.
+	/// </summary>
+	private void InitializeNextFloor()
+	{
+        if (floorNumber > 1)
+        {
+            SimpleStock nextStock = CreateSymbol<SimpleStock>("stock", new Vector3(0, 1, 0));
+            nextStock.Initialize(floorNumber - 1, Width, Depth, buildingProfile);
+            nextStock.Generate(buildDelay);
+        }
+        else
+        {
+            SimpleRoof nextRoof = CreateSymbol<SimpleRoof>("roof", new Vector3(0, 1, 0));
+            nextRoof.Initialize(Width, Depth, buildingProfile);
+            nextRoof.Generate(buildDelay);
+        }
+    }
 }
 
