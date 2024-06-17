@@ -7,11 +7,19 @@ public class SimpleStock : Shape
 
 	// shape parameters:
 	[SerializeField]
-	int Width;
+    private int widthMin;
 	[SerializeField]
-	int Depth;
+    private int widthMax;
+	[SerializeField]
+    private int depthMin;
+	[SerializeField] 
+	private int depthMax;
 
-	[SerializeField]
+	private int depth;
+	private int width;
+
+
+    [SerializeField]
 	private BuildingProfile buildingProfile;
 
 	[SerializeField]
@@ -21,20 +29,31 @@ public class SimpleStock : Shape
 
 	public void Initialize(int floorNumber, int Width, int Depth,BuildingProfile buildingProfile)
 	{
-		this.Width = Width;
-		this.Depth = Depth;
+		this.width = Width;
+		this.depth = Depth;
 		this.buildingProfile = buildingProfile;
 		this.floorNumber = floorNumber;
 	}
 
 	protected override void Execute()
 	{
+		if (firstFloor)
+		{
+			SetFloorAmount();
+			SetProportions();
+		}
+
 		SetFloorProfile();
 		GenerateWallCenters();
 		GenerateWallCorners();
-		if (firstFloor) SetFloorAmount();
 
 		InitializeNextFloor();
+	}
+
+	private void SetProportions()
+	{
+		width = widthMin + RandomInt(widthMax - widthMin);
+		depth = depthMin + RandomInt(depthMax - depthMin);
 	}
 
 	/// <summary>
@@ -70,20 +89,20 @@ public class SimpleStock : Shape
 			switch (i)
 			{
 				case 0:
-					localPosition = new Vector3(-(Width - 1) * 0.5f, 0, 0); // left
+					localPosition = new Vector3(-(width - 1) * 0.5f, 0, 0); // left
 					break;
 				case 1:
-					localPosition = new Vector3(0, 0, (Depth - 1) * 0.5f); // back
+					localPosition = new Vector3(0, 0, (depth - 1) * 0.5f); // back
 					break;
 				case 2:
-					localPosition = new Vector3((Width - 1) * 0.5f, 0, 0); // right
+					localPosition = new Vector3((width - 1) * 0.5f, 0, 0); // right
 					break;
 				case 3:
-					localPosition = new Vector3(0, 0, -(Depth - 1) * 0.5f); // front
+					localPosition = new Vector3(0, 0, -(depth - 1) * 0.5f); // front
 					break;
 			}
 			SimpleRow newRow = CreateSymbol<SimpleRow>("CentralWall", localPosition, Quaternion.Euler(0, i * 90, 0));
-			newRow.Initialize(i % 2 == 1 ? Width - 2 : Depth - 2, floorProfile.WallCenterBlocks);
+			newRow.Initialize(i % 2 == 1 ? width - 2 : depth - 2, floorProfile.WallCenterBlocks);
 			newRow.Generate();
 		}
 	}
@@ -101,16 +120,16 @@ public class SimpleStock : Shape
 			switch (i)
 			{
 				case 0:
-					localPosition = new Vector3(-(Width - 1) * 0.5f, 0, -(Depth - 1) * 0.5f); // left front
+					localPosition = new Vector3(-(width - 1) * 0.5f, 0, -(depth - 1) * 0.5f); // left front
 					break;
 				case 1:
-					localPosition = new Vector3(-(Width - 1) * 0.5f, 0, (Depth - 1) * 0.5f); // left back
+					localPosition = new Vector3(-(width - 1) * 0.5f, 0, (depth - 1) * 0.5f); // left back
 					break;
 				case 2:
-					localPosition = new Vector3((Width - 1) * 0.5f, 0, (Depth - 1) * 0.5f); // right back
+					localPosition = new Vector3((width - 1) * 0.5f, 0, (depth - 1) * 0.5f); // right back
 					break;
 				case 3:
-					localPosition = new Vector3((Width - 1) * 0.5f, 0, -(Depth - 1) * 0.5f); // right front
+					localPosition = new Vector3((width - 1) * 0.5f, 0, -(depth - 1) * 0.5f); // right front
 					break;
 			}
 
@@ -131,13 +150,13 @@ public class SimpleStock : Shape
         if (floorNumber > 1)
         {
             SimpleStock nextStock = CreateSymbol<SimpleStock>("stock", new Vector3(0, 1, 0));
-            nextStock.Initialize(floorNumber - 1, Width, Depth, buildingProfile);
+            nextStock.Initialize(floorNumber - 1, width, depth, buildingProfile);
             nextStock.Generate(buildDelay);
         }
         else
         {
             SimpleRoof nextRoof = CreateSymbol<SimpleRoof>("roof", new Vector3(0, 1, 0));
-            nextRoof.Initialize(Width, Depth, buildingProfile);
+            nextRoof.Initialize(width, depth, buildingProfile);
             nextRoof.Generate(buildDelay);
         }
     }
