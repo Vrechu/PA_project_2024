@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ddabadabcf4a7479476d5a90d8d0a8, type: 3}
   m_Name: TestProfile
   m_EditorClassIdentifier: 
+  MinFloors: 3
+  MaxFloors: 5
   FirstFloorProfile: {fileID: 11400000, guid: 73b7ec36a8ef72346b77d26fee402393, type: 2}
   MiddleFloorProfiles:
   - {fileID: 11400000, guid: d507cbf759d4d964984b122107abf34a, type: 2}
