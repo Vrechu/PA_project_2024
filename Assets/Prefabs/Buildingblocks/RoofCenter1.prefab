@@ -49,13 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildDelay: 0.1
-  Width: 0
-  Depth: 0
-  wallStyle: []
-  wallCornerStyle: []
-  roofStyle: []
-  roofCornerStyle: []
-  roofCenterStyle: []
+  widthMin: 0
+  widthMax: 0
+  depthMin: 0
+  depthMax: 0
+  buildingProfile: {fileID: 0}
+  firstFloor: 0
+  sidewalkBlocks: []
+  streetEdgeBlocks: []
 --- !u!33 &3239061478694444505
 MeshFilter:
   m_ObjectHideFlags: 0

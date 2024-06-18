@@ -83,3 +83,7 @@ MonoBehaviour:
   depthMax: 8
   buildingProfile: {fileID: 11400000, guid: 82a0a6f83f90ee6498d062a488b9e932, type: 2}
   firstFloor: 1
+  sidewalkBlocks:
+  - {fileID: 2381687304442514085, guid: 1d11ed6a7bc9d484895370a3b697911b, type: 3}
+  streetEdgeBlocks:
+  - {fileID: 2381687304442514085, guid: 1d11ed6a7bc9d484895370a3b697911b, type: 3}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 
@@ -11,12 +12,15 @@ public class GridCity : MonoBehaviour
 	[Range(0, 100)]
 	public float emptySpaceChance = 0;
 	public GameObject[] buildingPrefabs;
+	public GameObject[] streetPrefabs;
+
 
 	public float buildDelaySeconds = 0.1f;
 
 	private void Start()
 	{
-		Generate();
+		GenerateBuildings();
+		GenerateStreets();
 	}
 
 	private void Update()
@@ -24,7 +28,7 @@ public class GridCity : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.G))
 		{
 			DestroyChildren();
-			Generate();
+			GenerateBuildings();
 		}
 	}
 
@@ -36,10 +40,11 @@ public class GridCity : MonoBehaviour
 		}
 	}
 
-	private void Generate()
+	private void GenerateBuildings()
 	{
 		for (int row = 0; row < rows; row++)
 		{
+
 			for (int col = 0; col < columns; col++)
 			{
 				float random = Random.Range(0, 100);
@@ -59,6 +64,21 @@ public class GridCity : MonoBehaviour
 						shape.Generate(0);
 					}
 				}
+			}
+		}
+	}
+
+	private void GenerateStreets()
+	{
+		for (int row = 0; row < rows * rowWidth; row++)
+		{
+			for (int col = 0; col < columns * columnWidth; col++)
+			{
+				int streetIndex = Random.Range(0, streetPrefabs.Length);
+				GameObject newStreet = Instantiate(streetPrefabs[streetIndex], transform);
+
+				// Place it in the grid:
+				newStreet.transform.localPosition = new Vector3(col - columnWidth/2, 0, row - rowWidth/2);
 			}
 		}
 	}

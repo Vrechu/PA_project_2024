@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1495694323974406218}
   - component: {fileID: 2233267947501976142}
   m_Layer: 0
-  m_Name: BaseStock1
+  m_Name: Street
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,8 +55,6 @@ MonoBehaviour:
   depthMax: 0
   buildingProfile: {fileID: 0}
   firstFloor: 0
-  sidewalkBlocks: []
-  streetEdgeBlocks: []
 --- !u!33 &3239061478694444505
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -85,7 +83,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e244579c878f08a41b8d1e3589bfd3e3, type: 2}
+  - {fileID: 2100000, guid: 6ab7729fe5ed9ab4b80a8f535b33bdc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,8 +154,8 @@ Transform:
   m_GameObject: {fileID: 4460561882283679003}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.475, z: 0}
+  m_LocalScale: {x: 1, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4348343832713853162}
@@ -190,7 +188,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e244579c878f08a41b8d1e3589bfd3e3, type: 2}
+  - {fileID: 2100000, guid: 5372d115f064728478e6ea5146179cbe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -342,9 +342,11 @@ MonoBehaviour:
   columns: 10
   rowWidth: 10
   columnWidth: 10
-  emptySpaceChance: 8.9
+  emptySpaceChance: 0
   buildingPrefabs:
   - {fileID: 8869793703676864194, guid: e6f7a3069a4e33742aeacc5f4cbde78b, type: 3}
+  streetPrefabs:
+  - {fileID: 2381687304442514085, guid: a1fe56c0b7672c6409ece8a259b37eaf, type: 3}
   buildDelaySeconds: 0.1
 --- !u!4 &1650884839
 Transform:
@@ -399,6 +401,8 @@ MonoBehaviour:
   depthMax: 0
   buildingProfile: {fileID: 11400000, guid: 29108c50dc7af144faab39abf15cb09e, type: 2}
   firstFloor: 1
+  sidewalkBlocks: []
+  streetEdgeBlocks: []
 --- !u!114 &1914763050
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,6 +27,9 @@ public class SimpleStock : Shape
 
 	private FloorProfile floorProfile;
 
+	public GameObject[] sidewalkBlocks;
+	public GameObject[] streetEdgeBlocks;
+
 	public void Initialize(int floorNumber, int Width, int Depth,BuildingProfile buildingProfile)
 	{
 		this.width = Width;
@@ -41,6 +44,8 @@ public class SimpleStock : Shape
 		{
 			SetFloorAmount();
 			SetProportions();
+			GenerateSidewalks();
+			GenerateStreetEdges();
 		}
 
 		SetFloorProfile();
@@ -158,6 +163,58 @@ public class SimpleStock : Shape
             SimpleRoof nextRoof = CreateSymbol<SimpleRoof>("roof", new Vector3(0, 1, 0));
             nextRoof.Initialize(width, depth, buildingProfile);
             nextRoof.Generate(buildDelay);
+        }
+    }
+
+	private void GenerateSidewalks()
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			Vector3 localPosition = new Vector3();
+			switch (i)
+			{
+				case 0:
+					localPosition = new Vector3(-(width + 1) * 0.5f, 0, 0); // left
+					break;
+				case 1:
+					localPosition = new Vector3(0, 0, (depth + 1) * 0.5f); // back
+					break;
+				case 2:
+					localPosition = new Vector3((width + 1) * 0.5f, 0, 0); // right
+					break;
+				case 3:
+					localPosition = new Vector3(0, 0, -(depth + 1) * 0.5f); // front
+					break;
+			}
+			SimpleRow newRow = CreateSymbol<SimpleRow>("sidewalk", localPosition, Quaternion.Euler(0, i * 90, 0));
+			newRow.Initialize(i % 2 == 1 ? width : depth, sidewalkBlocks);
+			newRow.Generate();
+		}
+	}
+
+	private void GenerateStreetEdges()
+	{
+        for (int i = 0; i < 4; i++)
+        {
+            Vector3 localPosition = new Vector3();
+            switch (i)
+            {
+                case 0:
+                    localPosition = new Vector3(-(width + 3) * 0.5f, 0, 0); // left
+                    break;
+                case 1:
+                    localPosition = new Vector3(0, 0, (depth + 3) * 0.5f); // back
+                    break;
+                case 2:
+                    localPosition = new Vector3((width + 3) * 0.5f, 0, 0); // right
+                    break;
+                case 3:
+                    localPosition = new Vector3(0, 0, -(depth + 3) * 0.5f); // front
+                    break;
+            }
+            SimpleRow newRow = CreateSymbol<SimpleRow>("streetEdge", localPosition, Quaternion.Euler(0, i * 90, 0));
+            newRow.Initialize(i % 2 == 1 ? width : depth, streetEdgeBlocks);
+            newRow.Generate();
         }
     }
 }
