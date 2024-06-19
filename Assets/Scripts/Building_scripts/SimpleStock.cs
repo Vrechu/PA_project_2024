@@ -190,7 +190,31 @@ public class SimpleStock : Shape
 			newRow.Initialize(i % 2 == 1 ? width : depth, sidewalkBlocks);
 			newRow.Generate();
 		}
-	}
+
+        for (int i = 0; i < 4; i++)
+        {
+            Vector3 localPosition = new Vector3();
+            switch (i)
+            {
+                case 0:
+                    localPosition = new Vector3(-(width + 1) * 0.5f, 0, -(depth + 1) * 0.5f); // left front
+                    break;
+                case 1:
+                    localPosition = new Vector3(-(width + 1) * 0.5f, 0, (depth + 1) * 0.5f); // left back
+                    break;
+                case 2:
+                    localPosition = new Vector3((width + 1) * 0.5f, 0, (depth + 1) * 0.5f); // right back
+                    break;
+                case 3:
+                    localPosition = new Vector3((width + 1) * 0.5f, 0, -(depth + 1) * 0.5f); // right front
+                    break;
+            }
+
+            Block newCornerBlock = CreateSymbol<Block>("sidewalkCorner" + i, localPosition, Quaternion.Euler(0, i * 90, 0));
+			newCornerBlock.Initialize(sidewalkBlocks[RandomInt(sidewalkBlocks.Length)]);
+            newCornerBlock.Generate();
+        }
+    }
 
 	private void GenerateStreetEdges()
 	{
@@ -213,7 +237,7 @@ public class SimpleStock : Shape
                     break;
             }
             SimpleRow newRow = CreateSymbol<SimpleRow>("streetEdge", localPosition, Quaternion.Euler(0, i * 90, 0));
-            newRow.Initialize(i % 2 == 1 ? width : depth, streetEdgeBlocks);
+            newRow.Initialize((i % 2 == 1 ? width : depth) + 2, streetEdgeBlocks);
             newRow.Generate();
         }
     }
