@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ddabadabcf4a7479476d5a90d8d0a8, type: 3}
+  m_Name: BrickWhite
+  m_EditorClassIdentifier: 
+  MinFloors: 2
+  MaxFloors: 5
+  FirstFloorProfile: {fileID: 11400000, guid: 2508f49ab5115244caefdefffb0636a8, type: 2}
+  MiddleFloorProfiles:
+  - {fileID: 11400000, guid: 444a450844f93fb4d9af2a43a2a3e62f, type: 2}
+  RoofProfile: {fileID: 11400000, guid: 10b87de10ef64814e920a7305c5fcdb0, type: 2}
