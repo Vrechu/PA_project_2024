@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47de52e5623bb9040a63b4a6994ad43c, type: 3}
+  m_Name: BrickOrangeFloor
+  m_EditorClassIdentifier: 
+  WallCenterBlocks:
+  - {fileID: 3835339555248557155, guid: 33691dc503180ee4d910ba011ea1f16d, type: 3}
+  WallCornerBlocks:
+  - {fileID: 3835339555248557155, guid: f34f6388f6e1baa49b4a6184f6db7fb0, type: 3}

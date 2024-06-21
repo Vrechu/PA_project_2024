@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TestRoofProfile
   m_EditorClassIdentifier: 
   RoofCenterBlocks:
-  - {fileID: 1301690873937781147, guid: 21b76d686759c7e428c23c5edcf436ea, type: 3}
+  - {fileID: 3835339555248557155, guid: 8cfad1137cf3174448fafe585d90028e, type: 3}
   RoofCornerBlocks:
-  - {fileID: 1301690873937781147, guid: d41eb34d4a52f8c4d96beaafbc5477a5, type: 3}
+  - {fileID: 3835339555248557155, guid: 7e9e0ef0e1213db4883e1bafee5db4b0, type: 3}
   RoofTopBlocks:
-  - {fileID: 2381687304442514085, guid: 0a37623dc2795594d98a2f39a7102064, type: 3}
+  - {fileID: 3835339555248557155, guid: b7156e992f0dae342af73bb95950b673, type: 3}
