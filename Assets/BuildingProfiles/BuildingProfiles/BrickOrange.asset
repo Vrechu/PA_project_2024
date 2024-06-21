@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinFloors: 3
   MaxFloors: 5
-  FirstFloorProfile: {fileID: 11400000, guid: 73b7ec36a8ef72346b77d26fee402393, type: 2}
+  FirstFloorProfile: {fileID: 11400000, guid: e2302c5225280f94cb87894c7a776a5e, type: 2}
   MiddleFloorProfiles:
-  - {fileID: 11400000, guid: e2302c5225280f94cb87894c7a776a5e, type: 2}
-  RoofProfile: {fileID: 11400000, guid: 10b87de10ef64814e920a7305c5fcdb0, type: 2}
+  - {fileID: 11400000, guid: d507cbf759d4d964984b122107abf34a, type: 2}
+  RoofProfile: {fileID: 11400000, guid: ae525e0108c8aad45b31d4d609d24474, type: 2}

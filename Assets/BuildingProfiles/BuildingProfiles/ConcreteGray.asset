@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6ddabadabcf4a7479476d5a90d8d0a8, type: 3}
-  m_Name: TestProfile 1
+  m_Name: ConcreteGray
   m_EditorClassIdentifier: 
   MinFloors: 2
   MaxFloors: 5
-  FirstFloorProfile: {fileID: 11400000, guid: d507cbf759d4d964984b122107abf34a, type: 2}
+  FirstFloorProfile: {fileID: 11400000, guid: c016d03795dac5a40b46fdb882803a90, type: 2}
   MiddleFloorProfiles:
   - {fileID: 11400000, guid: 73b7ec36a8ef72346b77d26fee402393, type: 2}
   RoofProfile: {fileID: 11400000, guid: 10b87de10ef64814e920a7305c5fcdb0, type: 2}

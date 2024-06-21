@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47de52e5623bb9040a63b4a6994ad43c, type: 3}
-  m_Name: TestFloorProfile 1
+  m_Name: FloorConGray
   m_EditorClassIdentifier: 
   WallCenterBlocks:
-  - {fileID: 3835339555248557155, guid: e01b2f4801cc48e4e945e74bbfe4871d, type: 3}
+  - {fileID: 3835339555248557155, guid: 6d53d6115e8a299459b5e563f61b4dd5, type: 3}
+  - {fileID: 3835339555248557155, guid: 43888f4218008fa4c88a334a7aa66062, type: 3}
   WallCornerBlocks:
-  - {fileID: 4312049009853406107, guid: 58dbf186b3bb69046ab8a46076b328eb, type: 3}
+  - {fileID: 3835339555248557155, guid: cb0ff50c308792b4aa2c56b1bd1cd4de, type: 3}

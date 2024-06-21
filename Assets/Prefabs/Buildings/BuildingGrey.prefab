@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8869793703676864194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6322677911590835134}
+  - component: {fileID: 33198326157510281}
+  - component: {fileID: 508254665463682256}
+  - component: {fileID: 5310405619187874743}
+  m_Layer: 0
+  m_Name: BuildingGrey
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6322677911590835134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869793703676864194}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &33198326157510281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869793703676864194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2a7f98081fdcc4ead12aa8abcaca61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildKey: 32
+  BuildOnStart: 1
+--- !u!114 &508254665463682256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869793703676864194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2787b5d604b2e7c429dade934b700bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomSeed: 1
+  reuseSeed: 0
+  seed: 0
+  usedSeed: 0
+--- !u!114 &5310405619187874743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869793703676864194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf00531fd1bdc6a4abf6fec7862d1dd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildDelay: 0.1
+  widthMin: 3
+  widthMax: 8
+  depthMin: 3
+  depthMax: 8
+  buildingProfile: {fileID: 11400000, guid: 82a0a6f83f90ee6498d062a488b9e932, type: 2}
+  firstFloor: 1
+  sidewalkBlocks:
+  - {fileID: 3835339555248557155, guid: ce4ff28d4ecb8034283f87bbcceda34f, type: 3}
+  - {fileID: 3835339555248557155, guid: ce4ff28d4ecb8034283f87bbcceda34f, type: 3}
+  - {fileID: 3835339555248557155, guid: ce4ff28d4ecb8034283f87bbcceda34f, type: 3}
+  - {fileID: 3835339555248557155, guid: 6f0deb763ef3e9546b6b60fe59e4c203, type: 3}
+  streetEdgeBlocks:
+  - {fileID: 3835339555248557155, guid: 45e0bfc4c024a334494e8e14d4c79200, type: 3}

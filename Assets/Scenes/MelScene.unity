@@ -251,6 +251,7 @@ MonoBehaviour:
   emptySpaceChance: 0
   buildingPrefabs:
   - {fileID: 8869793703676864194, guid: e6f7a3069a4e33742aeacc5f4cbde78b, type: 3}
+  - {fileID: 8869793703676864194, guid: 0d7f1020cf532a243abf3ab63b55955c, type: 3}
   streetPrefabs:
   - {fileID: 3835339555248557155, guid: 13fe914dcc0fc89459626b25837eaa89, type: 3}
   buildDelaySeconds: 0.1

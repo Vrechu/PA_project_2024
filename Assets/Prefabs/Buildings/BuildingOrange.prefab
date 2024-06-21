@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 508254665463682256}
   - component: {fileID: 5310405619187874743}
   m_Layer: 0
-  m_Name: Building
+  m_Name: BuildingOrange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,6 +84,9 @@ MonoBehaviour:
   buildingProfile: {fileID: 11400000, guid: 29108c50dc7af144faab39abf15cb09e, type: 2}
   firstFloor: 1
   sidewalkBlocks:
+  - {fileID: 3835339555248557155, guid: ce4ff28d4ecb8034283f87bbcceda34f, type: 3}
+  - {fileID: 3835339555248557155, guid: 6f0deb763ef3e9546b6b60fe59e4c203, type: 3}
+  - {fileID: 3835339555248557155, guid: ce4ff28d4ecb8034283f87bbcceda34f, type: 3}
   - {fileID: 3835339555248557155, guid: ce4ff28d4ecb8034283f87bbcceda34f, type: 3}
   streetEdgeBlocks:
   - {fileID: 3835339555248557155, guid: 45e0bfc4c024a334494e8e14d4c79200, type: 3}
